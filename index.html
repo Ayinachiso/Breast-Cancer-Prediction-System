@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Prediction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8bbd0 0%, #fff1f9 100%);
+            font-family: 'Montserrat', Arial, sans-serif;
+            color: #6d214f;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .elegant {
+            background: rgba(255,255,255,0.7);
+            border-radius: 22px;
+            box-shadow: 0 8px 32px 0 rgba(233, 30, 99, 0.18);
+            padding: 48px 36px 36px 36px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            border: 1.5px solid #f8bbd0;
+        }
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2em;
+            letter-spacing: 2px;
+            margin-bottom: 28px;
+            color: #e91e63;
+            text-shadow: 0 0 12px #f8bbd0, 0 0 2px #fff;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        label {
+            font-size: 1.1em;
+            color: #e91e63;
+            margin-bottom: 4px;
+            text-align: left;
+        }
+        input[type="number"] {
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #f8bbd0;
+            background: #fff0f6;
+            color: #6d214f;
+            font-size: 1em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            outline: none;
+            transition: border 0.2s, background 0.2s;
+        }
+        input[type="number"]:focus {
+            border: 1.5px solid #e91e63;
+            background: #fff1f9;
+        }
+        button[type="submit"] {
+            background: linear-gradient(90deg, #e91e63 0%, #f8bbd0 100%);
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            padding: 14px;
+            font-size: 1.1em;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            transition: background 0.2s, color 0.2s;
+        }
+        button[type="submit"]:hover {
+            background: linear-gradient(90deg, #f8bbd0 0%, #e91e63 100%);
+            color: #e91e63;
+        }
+        .result {
+            margin-top: 32px;
+            font-size: 1.3em;
+            color: #e91e63;
+            text-shadow: 0 0 8px #f8bbd0;
+        }
+        .rose {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 18px;
+            display: inline-block;
+            background: url('https://img.icons8.com/ios-filled/100/e91e63/rose.png') no-repeat center center;
+            background-size: contain;
+        }
+        @media (max-width: 500px) {
+            .elegant {
+                padding: 24px 8px;
+            }
+            h2 {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="elegant">
+        <div class="rose"></div>
+        <h2>Breast Cancer Predictor</h2>
+        <form action="/predict" method="post">
+            <label for="radius">Mean Radius:</label>
+            <input type="number" step="any" name="radius" id="radius" required>
+
+            <label for="texture">Mean Texture:</label>
+            <input type="number" step="any" name="texture" id="texture" required>
+
+            <label for="perimeter">Mean Perimeter:</label>
+            <input type="number" step="any" name="perimeter" id="perimeter" required>
+
+            <label for="area">Mean Area:</label>
+            <input type="number" step="any" name="area" id="area" required>
+
+            <label for="smoothness">Mean Smoothness:</label>
+            <input type="number" step="any" name="smoothness" id="smoothness" required>
+
+            <button type="submit">Predict</button>
+        </form>
+        {% if prediction %}
+            <div class="result">{{ prediction }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
