@@ -1,4 +1,5 @@
 Flask
 numpy
 tensorflow
-joblibgunicorn
+joblib
+gunicorn
